@@ -1,0 +1,47 @@
+diff -ur wxruby-orig/src/extconf.rb wxruby/src/extconf.rb
+--- wxruby-orig/src/extconf.rb	2003-08-12 21:59:42.000000000 -0600
++++ wxruby/src/extconf.rb	2003-08-26 23:17:07.000000000 -0600
+@@ -18,21 +18,20 @@
+ 
+ 
+ if /linux/ =~ RUBY_PLATFORM  or /i386-freebsd/ =~ RUBY_PLATFORM
+-    CONFIG['CC'] = `wx-config --cxx`
+-    CONFIG['LDSHARED'].gsub!("gcc",`wx-config --cxx`.strip)
+-    $CFLAGS += " `wx-config --cxxflags`"
+-    $LDFLAGS += " `wx-config --libs` -Wl,--version-script,./version-script "
++    CONFIG['CC'] = `wxgtk2-2.4-config --cxx`
++    $CFLAGS += " `wxgtk2-2.4-config --cxxflags`"
++    $LDFLAGS += " `wxgtk2-2.4-config --libs` -Wl,--version-script,./version-script "
+ elsif /mingw32/ =~ RUBY_PLATFORM
+-	CONFIG["CC"] = eval("`sh wx-config --cxx`")
+-	CONFIG["LDSHARED"].gsub!("gcc",eval("`sh wx-config --cxx`").strip)
+-	$CFLAGS += eval(" `sh wx-config --cxxflags`").strip
+-	$LDFLAGS += eval(" `sh wx-config --libs`").strip
++	CONFIG["CC"] = eval("`sh wxgtk2-2.4-config --cxx`")
++	CONFIG["LDSHARED"].gsub!("gcc",eval("`sh wxgtk2-2.4-config --cxx`").strip)
++	$CFLAGS += eval(" `sh wxgtk2-2.4-config --cxxflags`").strip
++	$LDFLAGS += eval(" `sh wxgtk2-2.4-config --libs`").strip
+ 	$LIBS += " -lwxmsw241"
+ elsif /powerpc-darwin/ =~ RUBY_PLATFORM
+     CONFIG['CC'] = "g++"
+     CONFIG['LDSHARED'].gsub!("cc","g++")
+-    $CFLAGS += " `wx-config --cxxflags`"
+-    $LDFLAGS += " `wx-config --libs` -Wl "
++    $CFLAGS += " `wxgtk2-2.4-config --cxxflags`"
++    $LDFLAGS += " `wxgtk2-2.4-config --libs` -Wl "
+ 	$objs.delete("fontdialog.o")
+ elsif have_header("windows.h") and have_library("kernel32")
+     $WXDIR=ENV['WXWIN']
+diff -ur wxruby-orig/src/install.rb wxruby/src/install.rb
+--- wxruby-orig/src/install.rb	2003-08-12 21:59:48.000000000 -0600
++++ wxruby/src/install.rb	2003-08-26 23:17:59.000000000 -0600
+@@ -5,6 +5,6 @@
+ if /powerpc-darwin/ =~ RUBY_PLATFORM
+ 	File::install('wxruby.bundle', CONFIG['archdir'], 0755, true)
+ else
+-	File::install('wxmsw240.dll', CONFIG['bindir'], 0755, true)
+-	File::install('wxruby.so', CONFIG['archdir'], 0755, true)
++	File::install('wxmsw240.dll', ENV['DESTDIR'] + '/' << CONFIG['bindir'], 0755, true)
++	File::install('wxruby.so', ENV['DESTDIR'] + '/' << CONFIG['archdir'], 0755, true)
+ end
+Only in wxruby/src: install.rb~
