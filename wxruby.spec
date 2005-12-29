@@ -9,9 +9,10 @@ Source0:	http://rubyforge.org/download.php/60/%{name}-%{version}.tgz
 # Source0-md5:	7bf0482298a1f3559068f02c1488c6eb
 Patch0:		%{name}-extconf.patch
 URL:		http://www.wxruby.org/
-BuildRequires:	rpmbuild(macros) >= 1.272
+BuildRequires:	rpmbuild(macros) >= 1.277
 BuildRequires:	ruby-devel >= 1:1.8.0
 BuildRequires:	wxGTK2-devel >= 2.4.0
+%ruby_mod_ver_requires_eq
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
