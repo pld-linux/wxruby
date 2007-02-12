@@ -1,5 +1,5 @@
 Summary:	wxWindows for Ruby
-Summary(pl):	wxWindows dla Ruby
+Summary(pl.UTF-8):   wxWindows dla Ruby
 Name:		wxruby
 Version:	0.1.0
 Release:	1
@@ -18,8 +18,8 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %description
 wxruby is a binding for the wxWindows library for Ruby.
 
-%description -l pl
-wxruby jest dowi±zaniem biblioteki wxWindows dla jêzyka Ruby.
+%description -l pl.UTF-8
+wxruby jest dowiÄ…zaniem biblioteki wxWindows dla jÄ™zyka Ruby.
 
 %prep
 %setup -q -n %{name}
