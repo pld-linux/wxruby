@@ -1,5 +1,5 @@
 Summary:	wxWindows for Ruby
-Summary(pl.UTF-8):   wxWindows dla Ruby
+Summary(pl.UTF-8):	wxWindows dla Ruby
 Name:		wxruby
 Version:	0.1.0
 Release:	1
